@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>约束 Constraints - Keras 中文文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u7ea6\u675f Constraints";
+    var mkdocs_page_input_path = "constraints.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Keras 中文文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">主页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../why-use-keras/">为什么选择 Keras?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">快速开始</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting-started/sequential-model-guide/">Sequential 顺序模型指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../getting-started/functional-api-guide/">函数式 API 指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../getting-started/faq/">FAQ 常见问题解答</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">模型</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../models/about-keras-models/">关于 Keras 模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../models/sequential/">Sequential 顺序模型 API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../models/model/">函数式 API</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Layers</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../layers/about-keras-layers/">关于 Keras 网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/core/">核心网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/convolutional/">卷积层 Convolutional</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/pooling/">池化层 Pooling</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/local/">局部连接层 Locally-connected</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/recurrent/">循环层 Recurrent</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/embeddings/">嵌入层 Embedding</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/merge/">融合层 Merge</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/advanced-activations/">高级激活层 Advanced Activations</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/normalization/">标准化层 Normalization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/noise/">噪声层 Noise</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/wrappers/">层封装器 wrappers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/writing-your-own-keras-layers/">编写你自己的层</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">数据预处理</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../preprocessing/sequence/">序列预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../preprocessing/text/">文本预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../preprocessing/image/">图像预处理</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../losses/">损失函数 Losses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../metrics/">评估标准 Metrics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../optimizers/">优化器 Optimizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../activations/">激活函数 Activations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../callbacks/">回调函数 Callbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../datasets/">常用数据集 Datasets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../applications/">应用 Applications</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../backend/">后端 Backend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../initializers/">初始化 Initializers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../regularizers/">正则化 Regularizers</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">约束 Constraints</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">约束项的使用</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">可用的约束</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#maxnorm">MaxNorm</a></li>
+        
+            <li><a class="toctree-l3" href="#nonneg">NonNeg</a></li>
+        
+            <li><a class="toctree-l3" href="#unitnorm">UnitNorm</a></li>
+        
+            <li><a class="toctree-l3" href="#minmaxnorm">MinMaxNorm</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../visualization/">可视化 Visualization</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../scikit-learn-api/">Scikit-learn API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../utils/">工具</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../contributing/">贡献</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">经典样例</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../examples/addition_rnn/">Addition RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/babi_rnn/">Baby RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/babi_memnn/">Baby MemNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/cifar10_cnn/">CIFAR-10 CNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/cifar10_cnn_capsule/">CIFAR-10 CNN-Capsule</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/cifar10_cnn_tfaugment2d/">CIFAR-10 CNN with augmentation (TF)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/cifar10_resnet/">CIFAR-10 ResNet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/conv_filter_visualization/">Convolution filter visualization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/image_ocr/">Image OCR</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/imdb_bidirectional_lstm/">Bidirectional LSTM</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Keras 中文文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>约束 Constraints</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="_1">约束项的使用</h2>
+<p><code>constraints</code> 模块的函数允许在优化期间对网络参数设置约束（例如非负性）。</p>
+<p>约束是以层为对象进行的。具体的 API 因层而异，但 <code>Dense</code>，<code>Conv1D</code>，<code>Conv2D</code> 和 <code>Conv3D</code> 这些层具有统一的 API。</p>
+<p>约束层开放 2 个关键字参数：</p>
+<ul>
+<li><code>kernel_constraint</code> 用于主权重矩阵。</li>
+<li><code>bias_constraint</code> 用于偏置。</li>
+</ul>
+<pre><code class="python">from keras.constraints import max_norm
+model.add(Dense(64, kernel_constraint=max_norm(2.)))
+</code></pre>
+
+<h2 id="_2">可用的约束</h2>
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/constraints.py#L22">[source]</a></span></p>
+<h3 id="maxnorm">MaxNorm</h3>
+<pre><code class="python">keras.constraints.MaxNorm(max_value=2, axis=0)
+</code></pre>
+
+<p>MaxNorm 最大范数权值约束。</p>
+<p>映射到每个隐藏单元的权值的约束，使其具有小于或等于期望值的范数。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>m</strong>: 输入权值的最大范数。</li>
+<li><strong>axis</strong>: 整数，需要计算权值范数的轴。
+    例如，在 <code>Dense</code> 层中权值矩阵的尺寸为 <code>(input_dim, output_dim)</code>，
+    设置 <code>axis</code> 为 <code>0</code> 以约束每个长度为 <code>(input_dim,)</code> 的权值向量。
+    在 <code>Conv2D</code> 层（<code>data_format="channels_last"</code>）中，权值张量的尺寸为
+    <code>(rows, cols, input_depth, output_depth)</code>，设置 <code>axis</code> 为 <code>[0, 1, 2]</code> 
+    以越是每个尺寸为 <code>(rows, cols, input_depth)</code> 的滤波器张量的权值。</li>
+</ul>
+<p><strong>参考文献</strong></p>
+<ul>
+<li>[Dropout: A Simple Way to Prevent Neural Networks from Overfitting]
+(http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)</li>
+</ul>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/constraints.py#L62">[source]</a></span></p>
+<h3 id="nonneg">NonNeg</h3>
+<pre><code class="python">keras.constraints.NonNeg()
+</code></pre>
+
+<p>权重非负的约束。</p>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/constraints.py#L71">[source]</a></span></p>
+<h3 id="unitnorm">UnitNorm</h3>
+<pre><code class="python">keras.constraints.UnitNorm(axis=0)
+</code></pre>
+
+<p>映射到每个隐藏单元的权值的约束，使其具有单位范数。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>axis</strong>: 整数，需要计算权值范数的轴。
+    例如，在 <code>Dense</code> 层中权值矩阵的尺寸为 <code>(input_dim, output_dim)</code>，
+    设置 <code>axis</code> 为 <code>0</code> 以约束每个长度为 <code>(input_dim,)</code> 的权值向量。
+    在 <code>Conv2D</code> 层（<code>data_format="channels_last"</code>）中，权值张量的尺寸为
+    <code>(rows, cols, input_depth, output_depth)</code>，设置 <code>axis</code> 为 <code>[0, 1, 2]</code> 
+    以越是每个尺寸为 <code>(rows, cols, input_depth)</code> 的滤波器张量的权值。</li>
+</ul>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/constraints.py#L100">[source]</a></span></p>
+<h3 id="minmaxnorm">MinMaxNorm</h3>
+<pre><code class="python">keras.constraints.MinMaxNorm(min_value=0.0, max_value=1.0, rate=1.0, axis=0)
+</code></pre>
+
+<p>MinMaxNorm 最小/最大范数权值约束。</p>
+<p>映射到每个隐藏单元的权值的约束，使其范数在上下界之间。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>min_value</strong>: 输入权值的最小范数。</li>
+<li><strong>max_value</strong>: 输入权值的最大范数。</li>
+<li><strong>rate</strong>: 强制执行约束的比例：权值将被重新调整为
+    <code>(1 - rate) * norm + rate * norm.clip(min_value, max_value)</code>。
+    实际上，这意味着 rate = 1.0 代表严格执行约束，而 rate &lt;1.0 意味着权值
+    将在每一步重新调整以缓慢移动到所需间隔内的值。</li>
+<li><strong>axis</strong>: 整数，需要计算权值范数的轴。
+    例如，在 <code>Dense</code> 层中权值矩阵的尺寸为 <code>(input_dim, output_dim)</code>，
+    设置 <code>axis</code> 为 <code>0</code> 以约束每个长度为 <code>(input_dim,)</code> 的权值向量。
+    在 <code>Conv2D</code> 层（<code>data_format="channels_last"</code>）中，权值张量的尺寸为
+    <code>(rows, cols, input_depth, output_depth)</code>，设置 <code>axis</code> 为 <code>[0, 1, 2]</code> 
+    以越是每个尺寸为 <code>(rows, cols, input_depth)</code> 的滤波器张量的权值。</li>
+</ul>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../visualization/" class="btn btn-neutral float-right" title="可视化 Visualization">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../regularizers/" class="btn btn-neutral" title="正则化 Regularizers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../regularizers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../visualization/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

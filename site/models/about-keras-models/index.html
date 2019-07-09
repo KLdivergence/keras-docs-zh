@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>关于 Keras 模型 - Keras 中文文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u5173\u4e8e Keras \u6a21\u578b";
+    var mkdocs_page_input_path = "models\\about-keras-models.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Keras 中文文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">主页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../why-use-keras/">为什么选择 Keras?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">快速开始</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../getting-started/sequential-model-guide/">Sequential 顺序模型指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/functional-api-guide/">函数式 API 指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/faq/">FAQ 常见问题解答</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">模型</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">关于 Keras 模型</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#keras">关于 Keras 模型</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#model">Model 类继承</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sequential/">Sequential 顺序模型 API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../model/">函数式 API</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Layers</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../layers/about-keras-layers/">关于 Keras 网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/core/">核心网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/convolutional/">卷积层 Convolutional</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/pooling/">池化层 Pooling</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/local/">局部连接层 Locally-connected</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/recurrent/">循环层 Recurrent</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/embeddings/">嵌入层 Embedding</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/merge/">融合层 Merge</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/advanced-activations/">高级激活层 Advanced Activations</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/normalization/">标准化层 Normalization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/noise/">噪声层 Noise</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/wrappers/">层封装器 wrappers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/writing-your-own-keras-layers/">编写你自己的层</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">数据预处理</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/sequence/">序列预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/text/">文本预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/image/">图像预处理</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../losses/">损失函数 Losses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../metrics/">评估标准 Metrics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../optimizers/">优化器 Optimizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../activations/">激活函数 Activations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../callbacks/">回调函数 Callbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../datasets/">常用数据集 Datasets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../applications/">应用 Applications</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../backend/">后端 Backend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../initializers/">初始化 Initializers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../regularizers/">正则化 Regularizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../constraints/">约束 Constraints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../visualization/">可视化 Visualization</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../scikit-learn-api/">Scikit-learn API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../utils/">工具</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../contributing/">贡献</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">经典样例</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../examples/addition_rnn/">Addition RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/babi_rnn/">Baby RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/babi_memnn/">Baby MemNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn/">CIFAR-10 CNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn_capsule/">CIFAR-10 CNN-Capsule</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn_tfaugment2d/">CIFAR-10 CNN with augmentation (TF)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_resnet/">CIFAR-10 ResNet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/conv_filter_visualization/">Convolution filter visualization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/image_ocr/">Image OCR</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/imdb_bidirectional_lstm/">Bidirectional LSTM</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Keras 中文文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>模型 &raquo;</li>
+        
+      
+    
+    <li>关于 Keras 模型</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="keras">关于 Keras 模型</h1>
+<p>在 Keras 中有两类主要的模型：<a href="/models/sequential">Sequential 顺序模型</a> 和 <a href="/models/model">使用函数式 API 的 Model 类模型</a>。</p>
+<p>这些模型有许多共同的方法和属性：</p>
+<ul>
+<li><code>model.layers</code> 是包含模型网络层的展平列表。</li>
+<li><code>model.inputs</code> 是模型输入张量的列表。</li>
+<li><code>model.outputs</code> 是模型输出张量的列表。</li>
+<li><code>model.summary()</code> 打印出模型概述信息。 它是 <a href="/utils/#print_summary">utils.print_summary</a> 的简捷调用。</li>
+<li><code>model.get_config()</code> 返回包含模型配置信息的字典。通过以下代码，就可以根据这些配置信息重新实例化模型：</li>
+</ul>
+<pre><code class="python">config = model.get_config()
+model = Model.from_config(config)
+# 或者，对于 Sequential:
+model = Sequential.from_config(config)
+</code></pre>
+
+<ul>
+<li><code>model.get_weights()</code> 返回模型中所有权重张量的列表，类型为 Numpy 数组。</li>
+<li><code>model.set_weights(weights)</code> 从 Numpy 数组中为模型设置权重。列表中的数组必须与 <code>get_weights()</code> 返回的权重具有相同的尺寸。</li>
+<li><code>model.to_json()</code> 以 JSON 字符串的形式返回模型的表示。请注意，该表示不包括权重，仅包含结构。你可以通过以下方式从 JSON 字符串重新实例化同一模型（使用重新初始化的权重）：</li>
+</ul>
+<pre><code class="python">from keras.models import model_from_json
+
+json_string = model.to_json()
+model = model_from_json(json_string)
+</code></pre>
+
+<ul>
+<li><code>model.to_yaml()</code> 以 YAML 字符串的形式返回模型的表示。请注意，该表示不包括权重，只包含结构。你可以通过以下代码，从 YAML 字符串中重新实例化相同的模型（使用重新初始化的权重）：</li>
+</ul>
+<pre><code class="python">from keras.models import model_from_yaml
+
+yaml_string = model.to_yaml()
+model = model_from_yaml(yaml_string)
+</code></pre>
+
+<ul>
+<li><code>model.save_weights(filepath)</code> 将模型权重存储为 HDF5 文件。</li>
+<li><code>model.load_weights(filepath, by_name=False)</code>: 从 HDF5 文件（由 <code>save_weights</code> 创建）中加载权重。默认情况下，模型的结构应该是不变的。 如果想将权重载入不同的模型（部分层相同）， 设置 <code>by_name=True</code> 来载入那些名字相同的层的权重。</li>
+</ul>
+<p>注意：另请参阅<a href="/getting-started/faq/#how-can-i-install-HDF5-or-h5py-to-save-my-models-in-Keras">如何安装 HDF5 或 h5py 以保存 Keras 模型</a>，在常见问题中了解如何安装 <code>h5py</code> 的说明。</p>
+<h2 id="model">Model 类继承</h2>
+<p>除了这两类模型之外，你还可以通过继承 <code>Model</code> 类并在 <code>call</code> 方法中实现你自己的前向传播，以创建你自己的完全定制化的模型，（<code>Model</code> 类继承 API 引入于 Keras 2.2.0）。</p>
+<p>这里是一个用 <code>Model</code> 类继承写的简单的多层感知器的例子：</p>
+<pre><code class="python">import keras
+
+class SimpleMLP(keras.Model):
+
+    def __init__(self, use_bn=False, use_dp=False, num_classes=10):
+        super(SimpleMLP, self).__init__(name='mlp')
+        self.use_bn = use_bn
+        self.use_dp = use_dp
+        self.num_classes = num_classes
+
+        self.dense1 = keras.layers.Dense(32, activation='relu')
+        self.dense2 = keras.layers.Dense(num_classes, activation='softmax')
+        if self.use_dp:
+            self.dp = keras.layers.Dropout(0.5)
+        if self.use_bn:
+            self.bn = keras.layers.BatchNormalization(axis=-1)
+
+    def call(self, inputs):
+        x = self.dense1(inputs)
+        if self.use_dp:
+            x = self.dp(x)
+        if self.use_bn:
+            x = self.bn(x)
+        return self.dense2(x)
+
+model = SimpleMLP()
+model.compile(...)
+model.fit(...)
+</code></pre>
+
+<p>网络层定义在 <code>__init__(self, ...)</code> 中，前向传播在 <code>call(self, inputs)</code> 中指定。在 <code>call</code> 中，你可以指定自定义的损失函数，通过调用 <code>self.add_loss(loss_tensor)</code> （就像你在自定义层中一样）。</p>
+<p>在类继承模型中，模型的拓扑结构是由 Python 代码定义的（而不是网络层的静态图）。这意味着该模型的拓扑结构不能被检查或序列化。因此，以下方法和属性<strong>不适用于类继承模型</strong>：</p>
+<ul>
+<li><code>model.inputs</code> 和 <code>model.outputs</code>。</li>
+<li><code>model.to_yaml()</code> 和 <code>model.to_json()</code>。</li>
+<li><code>model.get_config()</code> 和 <code>model.save()</code>。</li>
+</ul>
+<p><strong>关键点</strong>：为每个任务使用正确的 API。<code>Model</code> 类继承 API 可以为实现复杂模型提供更大的灵活性，但它需要付出代价（比如缺失的特性）：它更冗长，更复杂，并且有更多的用户错误机会。如果可能的话，尽可能使用函数式 API，这对用户更友好。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sequential/" class="btn btn-neutral float-right" title="Sequential 顺序模型 API">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../getting-started/faq/" class="btn btn-neutral" title="FAQ 常见问题解答"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../getting-started/faq/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../sequential/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

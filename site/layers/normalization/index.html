@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>标准化层 Normalization - Keras 中文文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6807\u51c6\u5316\u5c42 Normalization";
+    var mkdocs_page_input_path = "layers\\normalization.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Keras 中文文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">主页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../why-use-keras/">为什么选择 Keras?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">快速开始</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../getting-started/sequential-model-guide/">Sequential 顺序模型指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/functional-api-guide/">函数式 API 指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/faq/">FAQ 常见问题解答</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">模型</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../models/about-keras-models/">关于 Keras 模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../models/sequential/">Sequential 顺序模型 API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../models/model/">函数式 API</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Layers</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../about-keras-layers/">关于 Keras 网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../core/">核心网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../convolutional/">卷积层 Convolutional</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../pooling/">池化层 Pooling</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../local/">局部连接层 Locally-connected</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../recurrent/">循环层 Recurrent</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../embeddings/">嵌入层 Embedding</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../merge/">融合层 Merge</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../advanced-activations/">高级激活层 Advanced Activations</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">标准化层 Normalization</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#batchnormalization">BatchNormalization</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../noise/">噪声层 Noise</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../wrappers/">层封装器 wrappers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../writing-your-own-keras-layers/">编写你自己的层</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">数据预处理</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/sequence/">序列预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/text/">文本预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/image/">图像预处理</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../losses/">损失函数 Losses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../metrics/">评估标准 Metrics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../optimizers/">优化器 Optimizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../activations/">激活函数 Activations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../callbacks/">回调函数 Callbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../datasets/">常用数据集 Datasets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../applications/">应用 Applications</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../backend/">后端 Backend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../initializers/">初始化 Initializers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../regularizers/">正则化 Regularizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../constraints/">约束 Constraints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../visualization/">可视化 Visualization</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../scikit-learn-api/">Scikit-learn API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../utils/">工具</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../contributing/">贡献</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">经典样例</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../examples/addition_rnn/">Addition RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/babi_rnn/">Baby RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/babi_memnn/">Baby MemNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn/">CIFAR-10 CNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn_capsule/">CIFAR-10 CNN-Capsule</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn_tfaugment2d/">CIFAR-10 CNN with augmentation (TF)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_resnet/">CIFAR-10 ResNet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/conv_filter_visualization/">Convolution filter visualization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/image_ocr/">Image OCR</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/imdb_bidirectional_lstm/">Bidirectional LSTM</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Keras 中文文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Layers &raquo;</li>
+        
+      
+    
+    <li>标准化层 Normalization</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/normalization.py#L16">[source]</a></span></p>
+<h3 id="batchnormalization">BatchNormalization</h3>
+<pre><code class="python">keras.layers.BatchNormalization(axis=-1, momentum=0.99, epsilon=0.001, center=True, scale=True, beta_initializer='zeros', gamma_initializer='ones', moving_mean_initializer='zeros', moving_variance_initializer='ones', beta_regularizer=None, gamma_regularizer=None, beta_constraint=None, gamma_constraint=None)
+</code></pre>
+
+<p>批量标准化层 (Ioffe and Szegedy, 2014)。</p>
+<p>在每一个批次的数据中标准化前一层的激活项，
+即，应用一个维持激活项平均值接近 0，标准差接近 1 的转换。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>axis</strong>: 整数，需要标准化的轴
+（通常是特征轴）。
+例如，在 <code>data_format="channels_first"</code> 的 <code>Conv2D</code> 层之后，
+在 <code>BatchNormalization</code> 中设置 <code>axis=1</code>。</li>
+<li><strong>momentum</strong>: 移动均值和移动方差的动量。</li>
+<li><strong>epsilon</strong>: 增加到方差的小的浮点数，以避免除以零。</li>
+<li><strong>center</strong>: 如果为 True，把 <code>beta</code> 的偏移量加到标准化的张量上。
+如果为 False， <code>beta</code> 被忽略。</li>
+<li><strong>scale</strong>: 如果为 True，乘以 <code>gamma</code>。
+如果为 False，<code>gamma</code> 不使用。
+当下一层为线性层（或者例如 <code>nn.relu</code>），
+这可以被禁用，因为缩放将由下一层完成。</li>
+<li><strong>beta_initializer</strong>: beta 权重的初始化方法。</li>
+<li><strong>gamma_initializer</strong>: gamma 权重的初始化方法。</li>
+<li><strong>moving_mean_initializer</strong>: 移动均值的初始化方法。</li>
+<li><strong>moving_variance_initializer</strong>: 移动方差的初始化方法。</li>
+<li><strong>beta_regularizer</strong>: 可选的 beta 权重的正则化方法。</li>
+<li><strong>gamma_regularizer</strong>: 可选的 gamma 权重的正则化方法。</li>
+<li><strong>beta_constraint</strong>: 可选的 beta 权重的约束方法。</li>
+<li><strong>gamma_constraint</strong>: 可选的 gamma 权重的约束方法。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<p>可以是任意的。如果将这一层作为模型的第一层， 则需要指定 <code>input_shape</code> 参数 （整数元组，不包含样本数量的维度）。</p>
+<p><strong>输出尺寸</strong></p>
+<p>与输入相同。</p>
+<p><strong>参考文献</strong></p>
+<ul>
+<li><a href="https://arxiv.org/abs/1502.03167">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../noise/" class="btn btn-neutral float-right" title="噪声层 Noise">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../advanced-activations/" class="btn btn-neutral" title="高级激活层 Advanced Activations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../advanced-activations/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../noise/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

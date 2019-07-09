@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>池化层 Pooling - Keras 中文文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6c60\u5316\u5c42 Pooling";
+    var mkdocs_page_input_path = "layers\\pooling.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Keras 中文文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">主页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../why-use-keras/">为什么选择 Keras?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">快速开始</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../getting-started/sequential-model-guide/">Sequential 顺序模型指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/functional-api-guide/">函数式 API 指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/faq/">FAQ 常见问题解答</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">模型</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../models/about-keras-models/">关于 Keras 模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../models/sequential/">Sequential 顺序模型 API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../models/model/">函数式 API</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Layers</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../about-keras-layers/">关于 Keras 网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../core/">核心网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../convolutional/">卷积层 Convolutional</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">池化层 Pooling</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#maxpooling1d">MaxPooling1D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#maxpooling2d">MaxPooling2D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#maxpooling3d">MaxPooling3D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#averagepooling1d">AveragePooling1D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#averagepooling2d">AveragePooling2D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#averagepooling3d">AveragePooling3D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#globalmaxpooling1d">GlobalMaxPooling1D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#globalaveragepooling1d">GlobalAveragePooling1D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#globalmaxpooling2d">GlobalMaxPooling2D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#globalaveragepooling2d">GlobalAveragePooling2D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#globalmaxpooling3d">GlobalMaxPooling3D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#globalaveragepooling3d">GlobalAveragePooling3D</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../local/">局部连接层 Locally-connected</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../recurrent/">循环层 Recurrent</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../embeddings/">嵌入层 Embedding</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../merge/">融合层 Merge</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../advanced-activations/">高级激活层 Advanced Activations</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../normalization/">标准化层 Normalization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../noise/">噪声层 Noise</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../wrappers/">层封装器 wrappers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../writing-your-own-keras-layers/">编写你自己的层</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">数据预处理</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/sequence/">序列预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/text/">文本预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/image/">图像预处理</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../losses/">损失函数 Losses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../metrics/">评估标准 Metrics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../optimizers/">优化器 Optimizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../activations/">激活函数 Activations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../callbacks/">回调函数 Callbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../datasets/">常用数据集 Datasets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../applications/">应用 Applications</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../backend/">后端 Backend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../initializers/">初始化 Initializers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../regularizers/">正则化 Regularizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../constraints/">约束 Constraints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../visualization/">可视化 Visualization</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../scikit-learn-api/">Scikit-learn API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../utils/">工具</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../contributing/">贡献</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">经典样例</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../examples/addition_rnn/">Addition RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/babi_rnn/">Baby RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/babi_memnn/">Baby MemNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn/">CIFAR-10 CNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn_capsule/">CIFAR-10 CNN-Capsule</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn_tfaugment2d/">CIFAR-10 CNN with augmentation (TF)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_resnet/">CIFAR-10 ResNet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/conv_filter_visualization/">Convolution filter visualization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/image_ocr/">Image OCR</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/imdb_bidirectional_lstm/">Bidirectional LSTM</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Keras 中文文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Layers &raquo;</li>
+        
+      
+    
+    <li>池化层 Pooling</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L69">[source]</a></span></p>
+<h3 id="maxpooling1d">MaxPooling1D</h3>
+<pre><code class="python">keras.layers.MaxPooling1D(pool_size=2, strides=None, padding='valid', data_format='channels_last')
+</code></pre>
+
+<p>对于时序数据的最大池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>pool_size</strong>: 整数，最大池化的窗口大小。</li>
+<li><strong>strides</strong>: 整数，或者是 <code>None</code>。作为缩小比例的因数。
+例如，2 会使得输入张量缩小一半。
+如果是 <code>None</code>，那么默认值是 <code>pool_size</code>。</li>
+<li><strong>padding</strong>: <code>"valid"</code> 或者 <code>"same"</code> （区分大小写）。</li>
+<li><strong>data_format</strong>: 字符串，<code>channels_last</code> (默认)或 <code>channels_first</code> 之一。
+    表示输入各维度的顺序。
+    <code>channels_last</code> 对应输入尺寸为 <code>(batch, steps, features)</code>，
+    <code>channels_first</code> 对应输入尺寸为 <code>(batch, features, steps)</code>。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>，
+    输入为 3D 张量，尺寸为：
+    <code>(batch_size, steps, features)</code></li>
+<li>如果<code>data_format='channels_first'</code>，
+    输入为 3D 张量，尺寸为：
+    <code>(batch_size, features, steps)</code></li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>，
+    输出为 3D 张量，尺寸为：
+    <code>(batch_size, downsampled_steps, features)</code></li>
+<li>如果 <code>data_format='channels_first'</code>，
+    输出为 3D 张量，尺寸为：
+    <code>(batch_size, features, downsampled_steps)</code></li>
+</ul>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L217">[source]</a></span></p>
+<h3 id="maxpooling2d">MaxPooling2D</h3>
+<pre><code class="python">keras.layers.MaxPooling2D(pool_size=(2, 2), strides=None, padding='valid', data_format=None)
+</code></pre>
+
+<p>对于空间数据的最大池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>pool_size</strong>: 整数，或者 2 个整数表示的元组，
+    沿（垂直，水平）方向缩小比例的因数。
+   （2，2）会把输入张量的两个维度都缩小一半。
+    如果只使用一个整数，那么两个维度都会使用同样的窗口长度。</li>
+<li><strong>strides</strong>: 整数，2 个整数表示的元组，或者是 <code>None</code>。
+    表示步长值。
+    如果是 <code>None</code>，那么默认值是 <code>pool_size</code>。</li>
+<li><strong>padding</strong>: <code>"valid"</code> 或者 <code>"same"</code> （区分大小写）。</li>
+<li><strong>data_format</strong>: 字符串，<code>channels_last</code> (默认)或 <code>channels_first</code> 之一。
+    表示输入各维度的顺序。
+    <code>channels_last</code> 代表尺寸是 <code>(batch, height, width, channels)</code> 的输入张量，
+    而 <code>channels_first</code> 代表尺寸是 <code>(batch, channels, height, width)</code> 的输入张量。
+    默认值根据 Keras 配置文件 <code>~/.keras/keras.json</code> 中的 <code>image_data_format</code> 值来设置。
+    如果还没有设置过，那么默认值就是 "channels_last"。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, rows, cols, channels)</code> 的 4D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, rows, cols)</code> 的 4D 张量</li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, pooled_rows, pooled_cols, channels)</code> 的 4D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, pooled_rows, pooled_cols)</code> 的 4D 张量</li>
+</ul>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L386">[source]</a></span></p>
+<h3 id="maxpooling3d">MaxPooling3D</h3>
+<pre><code class="python">keras.layers.MaxPooling3D(pool_size=(2, 2, 2), strides=None, padding='valid', data_format=None)
+</code></pre>
+
+<p>对于 3D（空间，或时空间）数据的最大池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>pool_size</strong>: 3 个整数表示的元组，缩小（dim1，dim2，dim3）比例的因数。
+(2, 2, 2) 会把 3D 输入张量的每个维度缩小一半。</li>
+<li><strong>strides</strong>: 3 个整数表示的元组，或者是 <code>None</code>。步长值。</li>
+<li><strong>padding</strong>: <code>"valid"</code> 或者 <code>"same"</code>（区分大小写）。</li>
+<li><strong>data_format</strong>: 字符串，<code>channels_last</code> (默认)或 <code>channels_first</code> 之一。
+    表示输入各维度的顺序。
+    <code>channels_last</code> 代表尺寸是 <code>(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code> 的输入张量，
+    而 <code>channels_first</code> 代表尺寸是 <code>(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code> 的输入张量。
+    默认值根据 Keras 配置文件 <code>~/.keras/keras.json</code> 中的 <code>image_data_format</code> 值来设置。
+    如果还没有设置过，那么默认值就是 "channels_last"。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code> 的 5D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code> 的 5D 张量</li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, pooled_dim1, pooled_dim2, pooled_dim3, channels)</code> 的 5D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, pooled_dim1, pooled_dim2, pooled_dim3)</code> 的 5D 张量</li>
+</ul>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L117">[source]</a></span></p>
+<h3 id="averagepooling1d">AveragePooling1D</h3>
+<pre><code class="python">keras.layers.AveragePooling1D(pool_size=2, strides=None, padding='valid', data_format='channels_last')
+</code></pre>
+
+<p>对于时序数据的平均池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>pool_size</strong>: 整数，平均池化的窗口大小。</li>
+<li><strong>strides</strong>: 整数，或者是 <code>None</code>。作为缩小比例的因数。
+例如，2 会使得输入张量缩小一半。
+如果是 <code>None</code>，那么默认值是 <code>pool_size</code>。</li>
+<li><strong>padding</strong>: <code>"valid"</code> 或者 <code>"same"</code> （区分大小写）。</li>
+<li><strong>data_format</strong>: 字符串，<code>channels_last</code> (默认)或 <code>channels_first</code> 之一。
+    表示输入各维度的顺序。
+    <code>channels_last</code> 对应输入尺寸为 <code>(batch, steps, features)</code>，
+    <code>channels_first</code> 对应输入尺寸为 <code>(batch, features, steps)</code>。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>，
+    输入为 3D 张量，尺寸为：
+    <code>(batch_size, steps, features)</code></li>
+<li>如果<code>data_format='channels_first'</code>，
+    输入为 3D 张量，尺寸为：
+    <code>(batch_size, features, steps)</code></li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>，
+    输出为 3D 张量，尺寸为：
+    <code>(batch_size, downsampled_steps, features)</code></li>
+<li>如果 <code>data_format='channels_first'</code>，
+    输出为 3D 张量，尺寸为：
+    <code>(batch_size, features, downsampled_steps)</code></li>
+</ul>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L272">[source]</a></span></p>
+<h3 id="averagepooling2d">AveragePooling2D</h3>
+<pre><code class="python">keras.layers.AveragePooling2D(pool_size=(2, 2), strides=None, padding='valid', data_format=None)
+</code></pre>
+
+<p>对于空间数据的平均池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>pool_size</strong>: 整数，或者 2 个整数表示的元组，
+    沿（垂直，水平）方向缩小比例的因数。
+   （2，2）会把输入张量的两个维度都缩小一半。
+    如果只使用一个整数，那么两个维度都会使用同样的窗口长度。</li>
+<li><strong>strides</strong>: 整数，2 个整数表示的元组，或者是 <code>None</code>。
+    表示步长值。
+    如果是 <code>None</code>，那么默认值是 <code>pool_size</code>。</li>
+<li><strong>padding</strong>: <code>"valid"</code> 或者 <code>"same"</code> （区分大小写）。</li>
+<li><strong>data_format</strong>: 字符串，<code>channels_last</code> (默认)或 <code>channels_first</code> 之一。
+    表示输入各维度的顺序。
+    <code>channels_last</code> 代表尺寸是 <code>(batch, height, width, channels)</code> 的输入张量，
+    而 <code>channels_first</code> 代表尺寸是 <code>(batch, channels, height, width)</code> 的输入张量。
+    默认值根据 Keras 配置文件 <code>~/.keras/keras.json</code> 中的 <code>image_data_format</code> 值来设置。
+    如果还没有设置过，那么默认值就是 "channels_last"。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, rows, cols, channels)</code> 的 4D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, rows, cols)</code> 的 4D 张量</li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, pooled_rows, pooled_cols, channels)</code> 的 4D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, pooled_rows, pooled_cols)</code> 的 4D 张量</li>
+</ul>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L436">[source]</a></span></p>
+<h3 id="averagepooling3d">AveragePooling3D</h3>
+<pre><code class="python">keras.layers.AveragePooling3D(pool_size=(2, 2, 2), strides=None, padding='valid', data_format=None)
+</code></pre>
+
+<p>对于 3D （空间，或者时空间）数据的平均池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>pool_size</strong>: 3 个整数表示的元组，缩小（dim1，dim2，dim3）比例的因数。
+(2, 2, 2) 会把 3D 输入张量的每个维度缩小一半。</li>
+<li><strong>strides</strong>: 3 个整数表示的元组，或者是 <code>None</code>。步长值。</li>
+<li><strong>padding</strong>: <code>"valid"</code> 或者 <code>"same"</code>（区分大小写）。</li>
+<li><strong>data_format</strong>: 字符串，<code>channels_last</code> (默认)或 <code>channels_first</code> 之一。
+    表示输入各维度的顺序。
+    <code>channels_last</code> 代表尺寸是 <code>(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code> 的输入张量，
+    而 <code>channels_first</code> 代表尺寸是 <code>(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code> 的输入张量。
+    默认值根据 Keras 配置文件 <code>~/.keras/keras.json</code> 中的 <code>image_data_format</code> 值来设置。
+    如果还没有设置过，那么默认值就是 "channels_last"。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code> 的 5D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code> 的 5D 张量</li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, pooled_dim1, pooled_dim2, pooled_dim3, channels)</code> 的 5D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, pooled_dim1, pooled_dim2, pooled_dim3)</code> 的 5D 张量</li>
+</ul>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L557">[source]</a></span></p>
+<h3 id="globalmaxpooling1d">GlobalMaxPooling1D</h3>
+<pre><code class="python">keras.layers.GlobalMaxPooling1D(data_format='channels_last')
+</code></pre>
+
+<p>对于时序数据的全局最大池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>data_format</strong>: 字符串，<code>channels_last</code> (默认)或 <code>channels_first</code> 之一。
+    表示输入各维度的顺序。
+    <code>channels_last</code> 对应输入尺寸为 <code>(batch, steps, features)</code>，
+    <code>channels_first</code> 对应输入尺寸为 <code>(batch, features, steps)</code>。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<p>尺寸是 <code>(batch_size, steps, features)</code> 的 3D 张量。</p>
+<p><strong>输出尺寸</strong></p>
+<p>尺寸是 <code>(batch_size, features)</code> 的 2D 张量。</p>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L455">[source]</a></span></p>
+<h3 id="globalaveragepooling1d">GlobalAveragePooling1D</h3>
+<pre><code class="python">keras.layers.GlobalAveragePooling1D()
+</code></pre>
+
+<p>对于时序数据的全局平均池化。</p>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>，
+    输入为 3D 张量，尺寸为：
+    <code>(batch_size, steps, features)</code></li>
+<li>如果<code>data_format='channels_first'</code>，
+    输入为 3D 张量，尺寸为：
+    <code>(batch_size, features, steps)</code></li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<p>尺寸是 <code>(batch_size, features)</code> 的 2D 张量。</p>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L647">[source]</a></span></p>
+<h3 id="globalmaxpooling2d">GlobalMaxPooling2D</h3>
+<pre><code class="python">keras.layers.GlobalMaxPooling2D(data_format=None)
+</code></pre>
+
+<p>对于空域数据的全局最大池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>data_format</strong>: 字符串，<code>channels_last</code> (默认)或 <code>channels_first</code> 之一。
+    表示输入各维度的顺序。
+    <code>channels_last</code> 代表尺寸是 <code>(batch, height, width, channels)</code> 的输入张量，
+    而 <code>channels_first</code> 代表尺寸是 <code>(batch, channels, height, width)</code> 的输入张量。
+    默认值根据 Keras 配置文件 <code>~/.keras/keras.json</code> 中的 <code>image_data_format</code> 值来设置。
+    如果还没有设置过，那么默认值就是 "channels_last"。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, rows, cols, channels)</code> 的 4D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, rows, cols)</code> 的 4D 张量</li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<p>尺寸是 <code>(batch_size, channels)</code> 的 2D 张量</p>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L510">[source]</a></span></p>
+<h3 id="globalaveragepooling2d">GlobalAveragePooling2D</h3>
+<pre><code class="python">keras.layers.GlobalAveragePooling2D(data_format=None)
+</code></pre>
+
+<p>对于空域数据的全局平均池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>data_format</strong>: 一个字符串，<code>channels_last</code> （默认值）或者 <code>channels_first</code>。
+输入张量中的维度顺序。
+<code>channels_last</code> 代表尺寸是 <code>(batch, height, width, channels)</code> 的输入张量，而 <code>channels_first</code> 代表尺寸是 <code>(batch, channels, height, width)</code> 的输入张量。
+默认值根据 Keras 配置文件 <code>~/.keras/keras.json</code> 中的 <code>image_data_format</code> 值来设置。
+如果还没有设置过，那么默认值就是 "channels_last"。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, rows, cols, channels)</code> 的 4D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, rows, cols)</code> 的 4D 张量</li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<p>尺寸是 <code>(batch_size, channels)</code> 的 2D 张量</p>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L742">[source]</a></span></p>
+<h3 id="globalmaxpooling3d">GlobalMaxPooling3D</h3>
+<pre><code class="python">keras.layers.GlobalMaxPooling3D(data_format=None)
+</code></pre>
+
+<p>对于 3D 数据的全局最大池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>data_format</strong>: 字符串，<code>channels_last</code> (默认)或 <code>channels_first</code> 之一。
+    表示输入各维度的顺序。
+    <code>channels_last</code> 代表尺寸是 <code>(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code> 的输入张量，
+    而 <code>channels_first</code> 代表尺寸是 <code>(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code> 的输入张量。
+    默认值根据 Keras 配置文件 <code>~/.keras/keras.json</code> 中的 <code>image_data_format</code> 值来设置。
+    如果还没有设置过，那么默认值就是 "channels_last"。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code> 的 5D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code> 的 5D 张量</li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<p>尺寸是 <code>(batch_size, channels)</code> 的 2D 张量</p>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L707">[source]</a></span></p>
+<h3 id="globalaveragepooling3d">GlobalAveragePooling3D</h3>
+<pre><code class="python">keras.layers.GlobalAveragePooling3D(data_format=None)
+</code></pre>
+
+<p>对于 3D 数据的全局平均池化。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>data_format</strong>: 字符串，<code>channels_last</code> (默认)或 <code>channels_first</code> 之一。
+    表示输入各维度的顺序。
+    <code>channels_last</code> 代表尺寸是 <code>(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code> 的输入张量，
+    而 <code>channels_first</code> 代表尺寸是 <code>(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code> 的输入张量。
+    默认值根据 Keras 配置文件 <code>~/.keras/keras.json</code> 中的 <code>image_data_format</code> 值来设置。
+    如果还没有设置过，那么默认值就是 "channels_last"。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<ul>
+<li>如果 <code>data_format='channels_last'</code>:
+尺寸是 <code>(batch_size, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code> 的 5D 张量</li>
+<li>如果 <code>data_format='channels_first'</code>:
+尺寸是 <code>(batch_size, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code> 的 5D 张量</li>
+</ul>
+<p><strong>输出尺寸</strong></p>
+<p>尺寸是 <code>(batch_size, channels)</code> 的 2D 张量</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../local/" class="btn btn-neutral float-right" title="局部连接层 Locally-connected">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../convolutional/" class="btn btn-neutral" title="卷积层 Convolutional"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../convolutional/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../local/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Variational autoencoder - Keras 中文文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Variational autoencoder";
+    var mkdocs_page_input_path = "examples\\variational_autoencoder.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Keras 中文文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">主页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../why-use-keras/">为什么选择 Keras?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">快速开始</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../getting-started/sequential-model-guide/">Sequential 顺序模型指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/functional-api-guide/">函数式 API 指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/faq/">FAQ 常见问题解答</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">模型</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../models/about-keras-models/">关于 Keras 模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../models/sequential/">Sequential 顺序模型 API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../models/model/">函数式 API</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Layers</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../layers/about-keras-layers/">关于 Keras 网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/core/">核心网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/convolutional/">卷积层 Convolutional</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/pooling/">池化层 Pooling</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/local/">局部连接层 Locally-connected</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/recurrent/">循环层 Recurrent</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/embeddings/">嵌入层 Embedding</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/merge/">融合层 Merge</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/advanced-activations/">高级激活层 Advanced Activations</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/normalization/">标准化层 Normalization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/noise/">噪声层 Noise</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/wrappers/">层封装器 wrappers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/writing-your-own-keras-layers/">编写你自己的层</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">数据预处理</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/sequence/">序列预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/text/">文本预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/image/">图像预处理</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../losses/">损失函数 Losses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../metrics/">评估标准 Metrics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../optimizers/">优化器 Optimizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../activations/">激活函数 Activations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../callbacks/">回调函数 Callbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../datasets/">常用数据集 Datasets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../applications/">应用 Applications</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../backend/">后端 Backend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../initializers/">初始化 Initializers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../regularizers/">正则化 Regularizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../constraints/">约束 Constraints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../visualization/">可视化 Visualization</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../scikit-learn-api/">Scikit-learn API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../utils/">工具</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../contributing/">贡献</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">经典样例</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../addition_rnn/">Addition RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../babi_rnn/">Baby RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../babi_memnn/">Baby MemNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cifar10_cnn/">CIFAR-10 CNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cifar10_cnn_capsule/">CIFAR-10 CNN-Capsule</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cifar10_cnn_tfaugment2d/">CIFAR-10 CNN with augmentation (TF)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cifar10_resnet/">CIFAR-10 ResNet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../conv_filter_visualization/">Convolution filter visualization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../image_ocr/">Image OCR</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../imdb_bidirectional_lstm/">Bidirectional LSTM</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Keras 中文文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Variational autoencoder</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Example of VAE on MNIST dataset using MLP</p>
+<p>The VAE has a modular design. The encoder, decoder and VAE
+are 3 models that share weights. After training the VAE model,
+the encoder can be used to generate latent vectors.
+The decoder can be used to generate MNIST digits by sampling the
+latent vector from a Gaussian distribution with mean = 0 and std = 1.</p>
+<h1 id="reference">Reference</h1>
+<p>[1] Kingma, Diederik P., and Max Welling.
+"Auto-Encoding Variational Bayes."
+https://arxiv.org/abs/1312.6114</p>
+<pre><code class="python">from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+from keras.layers import Lambda, Input, Dense
+from keras.models import Model
+from keras.datasets import mnist
+from keras.losses import mse, binary_crossentropy
+from keras.utils import plot_model
+from keras import backend as K
+
+import numpy as np
+import matplotlib.pyplot as plt
+import argparse
+import os
+
+
+# reparameterization trick
+# instead of sampling from Q(z|X), sample epsilon = N(0,I)
+# z = z_mean + sqrt(var) * epsilon
+def sampling(args):
+    &quot;&quot;&quot;Reparameterization trick by sampling from an isotropic unit Gaussian.
+
+    # Arguments
+        args (tensor): mean and log of variance of Q(z|X)
+
+    # Returns
+        z (tensor): sampled latent vector
+    &quot;&quot;&quot;
+
+    z_mean, z_log_var = args
+    batch = K.shape(z_mean)[0]
+    dim = K.int_shape(z_mean)[1]
+    # by default, random_normal has mean = 0 and std = 1.0
+    epsilon = K.random_normal(shape=(batch, dim))
+    return z_mean + K.exp(0.5 * z_log_var) * epsilon
+
+
+def plot_results(models,
+                 data,
+                 batch_size=128,
+                 model_name=&quot;vae_mnist&quot;):
+    &quot;&quot;&quot;Plots labels and MNIST digits as a function of the 2D latent vector
+
+    # Arguments
+        models (tuple): encoder and decoder models
+        data (tuple): test data and label
+        batch_size (int): prediction batch size
+        model_name (string): which model is using this function
+    &quot;&quot;&quot;
+
+    encoder, decoder = models
+    x_test, y_test = data
+    os.makedirs(model_name, exist_ok=True)
+
+    filename = os.path.join(model_name, &quot;vae_mean.png&quot;)
+    # display a 2D plot of the digit classes in the latent space
+    z_mean, _, _ = encoder.predict(x_test,
+                                   batch_size=batch_size)
+    plt.figure(figsize=(12, 10))
+    plt.scatter(z_mean[:, 0], z_mean[:, 1], c=y_test)
+    plt.colorbar()
+    plt.xlabel(&quot;z[0]&quot;)
+    plt.ylabel(&quot;z[1]&quot;)
+    plt.savefig(filename)
+    plt.show()
+
+    filename = os.path.join(model_name, &quot;digits_over_latent.png&quot;)
+    # display a 30x30 2D manifold of digits
+    n = 30
+    digit_size = 28
+    figure = np.zeros((digit_size * n, digit_size * n))
+    # linearly spaced coordinates corresponding to the 2D plot
+    # of digit classes in the latent space
+    grid_x = np.linspace(-4, 4, n)
+    grid_y = np.linspace(-4, 4, n)[::-1]
+
+    for i, yi in enumerate(grid_y):
+        for j, xi in enumerate(grid_x):
+            z_sample = np.array([[xi, yi]])
+            x_decoded = decoder.predict(z_sample)
+            digit = x_decoded[0].reshape(digit_size, digit_size)
+            figure[i * digit_size: (i + 1) * digit_size,
+                   j * digit_size: (j + 1) * digit_size] = digit
+
+    plt.figure(figsize=(10, 10))
+    start_range = digit_size // 2
+    end_range = n * digit_size + start_range + 1
+    pixel_range = np.arange(start_range, end_range, digit_size)
+    sample_range_x = np.round(grid_x, 1)
+    sample_range_y = np.round(grid_y, 1)
+    plt.xticks(pixel_range, sample_range_x)
+    plt.yticks(pixel_range, sample_range_y)
+    plt.xlabel(&quot;z[0]&quot;)
+    plt.ylabel(&quot;z[1]&quot;)
+    plt.imshow(figure, cmap='Greys_r')
+    plt.savefig(filename)
+    plt.show()
+
+
+# MNIST dataset
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+image_size = x_train.shape[1]
+original_dim = image_size * image_size
+x_train = np.reshape(x_train, [-1, original_dim])
+x_test = np.reshape(x_test, [-1, original_dim])
+x_train = x_train.astype('float32') / 255
+x_test = x_test.astype('float32') / 255
+
+# network parameters
+input_shape = (original_dim, )
+intermediate_dim = 512
+batch_size = 128
+latent_dim = 2
+epochs = 50
+
+# VAE model = encoder + decoder
+# build encoder model
+inputs = Input(shape=input_shape, name='encoder_input')
+x = Dense(intermediate_dim, activation='relu')(inputs)
+z_mean = Dense(latent_dim, name='z_mean')(x)
+z_log_var = Dense(latent_dim, name='z_log_var')(x)
+
+# use reparameterization trick to push the sampling out as input
+# note that &quot;output_shape&quot; isn't necessary with the TensorFlow backend
+z = Lambda(sampling, output_shape=(latent_dim,), name='z')([z_mean, z_log_var])
+
+# instantiate encoder model
+encoder = Model(inputs, [z_mean, z_log_var, z], name='encoder')
+encoder.summary()
+plot_model(encoder, to_file='vae_mlp_encoder.png', show_shapes=True)
+
+# build decoder model
+latent_inputs = Input(shape=(latent_dim,), name='z_sampling')
+x = Dense(intermediate_dim, activation='relu')(latent_inputs)
+outputs = Dense(original_dim, activation='sigmoid')(x)
+
+# instantiate decoder model
+decoder = Model(latent_inputs, outputs, name='decoder')
+decoder.summary()
+plot_model(decoder, to_file='vae_mlp_decoder.png', show_shapes=True)
+
+# instantiate VAE model
+outputs = decoder(encoder(inputs)[2])
+vae = Model(inputs, outputs, name='vae_mlp')
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    help_ = &quot;Load h5 model trained weights&quot;
+    parser.add_argument(&quot;-w&quot;, &quot;--weights&quot;, help=help_)
+    help_ = &quot;Use mse loss instead of binary cross entropy (default)&quot;
+    parser.add_argument(&quot;-m&quot;,
+                        &quot;--mse&quot;,
+                        help=help_, action='store_true')
+    args = parser.parse_args()
+    models = (encoder, decoder)
+    data = (x_test, y_test)
+
+    # VAE loss = mse_loss or xent_loss + kl_loss
+    if args.mse:
+        reconstruction_loss = mse(inputs, outputs)
+    else:
+        reconstruction_loss = binary_crossentropy(inputs,
+                                                  outputs)
+
+    reconstruction_loss *= original_dim
+    kl_loss = 1 + z_log_var - K.square(z_mean) - K.exp(z_log_var)
+    kl_loss = K.sum(kl_loss, axis=-1)
+    kl_loss *= -0.5
+    vae_loss = K.mean(reconstruction_loss + kl_loss)
+    vae.add_loss(vae_loss)
+    vae.compile(optimizer='adam')
+    vae.summary()
+    plot_model(vae,
+               to_file='vae_mlp.png',
+               show_shapes=True)
+
+    if args.weights:
+        vae.load_weights(args.weights)
+    else:
+        # train the autoencoder
+        vae.fit(x_train,
+                epochs=epochs,
+                batch_size=batch_size,
+                validation_data=(x_test, None))
+        vae.save_weights('vae_mlp_mnist.h5')
+
+    plot_results(models,
+                 data,
+                 batch_size=batch_size,
+                 model_name=&quot;vae_mlp&quot;)
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
