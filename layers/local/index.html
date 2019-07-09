@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>局部连接层 Locally-connected - Keras 中文文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u5c40\u90e8\u8fde\u63a5\u5c42 Locally-connected";
+    var mkdocs_page_input_path = "layers/local.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Keras 中文文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">主页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../why-use-keras/">为什么选择 Keras?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">快速开始</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../getting-started/sequential-model-guide/">Sequential 顺序模型指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/functional-api-guide/">函数式 API 指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/faq/">FAQ 常见问题解答</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">模型</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../models/about-keras-models/">关于 Keras 模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../models/sequential/">Sequential 顺序模型 API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../models/model/">函数式 API</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Layers</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../about-keras-layers/">关于 Keras 网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../core/">核心网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../convolutional/">卷积层 Convolutional</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../pooling/">池化层 Pooling</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">局部连接层 Locally-connected</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#locallyconnected1d">LocallyConnected1D</a></li>
+    
+
+    <li class="toctree-l3"><a href="#locallyconnected2d">LocallyConnected2D</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../recurrent/">循环层 Recurrent</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../embeddings/">嵌入层 Embedding</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../merge/">融合层 Merge</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../advanced-activations/">高级激活层 Advanced Activations</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../normalization/">标准化层 Normalization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../noise/">噪声层 Noise</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../wrappers/">层封装器 wrappers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../writing-your-own-keras-layers/">编写你自己的层</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">数据预处理</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/sequence/">序列预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/text/">文本预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/image/">图像预处理</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../losses/">损失函数 Losses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../metrics/">评估标准 Metrics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../optimizers/">优化器 Optimizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../activations/">激活函数 Activations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../callbacks/">回调函数 Callbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../datasets/">常用数据集 Datasets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../applications/">应用 Applications</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../backend/">后端 Backend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../initializers/">初始化 Initializers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../regularizers/">正则化 Regularizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../constraints/">约束 Constraints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../visualization/">可视化 Visualization</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../scikit-learn-api/">Scikit-learn API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../utils/">工具</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../contributing/">贡献</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">经典样例</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../examples/addition_rnn/">Addition RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/babi_rnn/">Baby RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/babi_memnn/">Baby MemNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn/">CIFAR-10 CNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn_capsule/">CIFAR-10 CNN-Capsule</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_cnn_tfaugment2d/">CIFAR-10 CNN with augmentation (TF)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/cifar10_resnet/">CIFAR-10 ResNet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/conv_filter_visualization/">Convolution filter visualization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/image_ocr/">Image OCR</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../examples/imdb_bidirectional_lstm/">Bidirectional LSTM</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Keras 中文文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Layers &raquo;</li>
+        
+      
+    
+    <li>局部连接层 Locally-connected</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/local.py#L19">[source]</a></span></p>
+<h3 id="locallyconnected1d">LocallyConnected1D</h3>
+<pre><code class="python">keras.layers.LocallyConnected1D(filters, kernel_size, strides=1, padding='valid', data_format=None, activation=None, use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros', kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)
+</code></pre>
+
+<p>1D 输入的局部连接层。</p>
+<p><code>LocallyConnected1D</code> 层与 <code>Conv1D</code> 层的工作方式相同，除了权值不共享外，
+也就是说，在输入的每个不同部分应用不同的一组过滤器。</p>
+<p><strong>例子</strong></p>
+<pre><code class="python"># 将长度为 3 的非共享权重 1D 卷积应用于
+# 具有 10 个时间步长的序列，并使用 64个 输出滤波器
+model = Sequential()
+model.add(LocallyConnected1D(64, 3, input_shape=(10, 32)))
+# 现在 model.output_shape == (None, 8, 64)
+# 在上面再添加一个新的 conv1d
+model.add(LocallyConnected1D(32, 3))
+# 现在 model.output_shape == (None, 6, 32)
+</code></pre>
+
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>filters</strong>: 整数，输出空间的维度
+（即卷积中滤波器的输出数量）。</li>
+<li><strong>kernel_size</strong>: 一个整数，或者单个整数表示的元组或列表，
+指明 1D 卷积窗口的长度。</li>
+<li><strong>strides</strong>: 一个整数，或者单个整数表示的元组或列表，
+指明卷积的步长。
+指定任何 stride 值 != 1 与指定 <code>dilation_rate</code> 值 != 1 两者不兼容。</li>
+<li><strong>padding</strong>: 当前仅支持 <code>"valid"</code> (大小写敏感)。
+<code>"same"</code> 可能会在未来支持。</li>
+<li><strong>activation</strong>: 要使用的激活函数
+(详见 <a href="../../activations/">activations</a>)。
+如果你不指定，则不使用激活函数
+(即线性激活： <code>a(x) = x</code>)。</li>
+<li><strong>use_bias</strong>: 布尔值，该层是否使用偏置向量。</li>
+<li><strong>kernel_initializer</strong>: <code>kernel</code> 权值矩阵的初始化器
+(详见 <a href="../../initializers/">initializers</a>)。</li>
+<li><strong>bias_initializer</strong>: 偏置向量的初始化器
+(详见 <a href="../../initializers/">initializers</a>)。</li>
+<li><strong>kernel_regularizer</strong>: 运用到 <code>kernel</code> 权值矩阵的正则化函数
+(详见 <a href="../../regularizers/">regularizer</a>)。</li>
+<li><strong>bias_regularizer</strong>: 运用到偏置向量的正则化函数
+(详见 <a href="../../regularizers/">regularizer</a>)。</li>
+<li><strong>activity_regularizer</strong>: 运用到层输出（它的激活值）的正则化函数
+(详见 <a href="../../regularizers/">regularizer</a>)。</li>
+<li><strong>kernel_constraint</strong>: 运用到 <code>kernel</code> 权值矩阵的约束函数
+(详见 <a href="../../constraints/">constraints</a>)。</li>
+<li><strong>bias_constraint</strong>: 运用到偏置向量的约束函数
+(详见 <a href="../../constraints/">constraints</a>)。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<p>3D 张量，尺寸为： <code>(batch_size, steps, input_dim)</code>。</p>
+<p><strong>输出尺寸</strong></p>
+<p>3D 张量 ，尺寸为：<code>(batch_size, new_steps, filters)</code>，
+<code>steps</code> 值可能因填充或步长而改变。</p>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/layers/local.py#L182">[source]</a></span></p>
+<h3 id="locallyconnected2d">LocallyConnected2D</h3>
+<pre><code class="python">keras.layers.LocallyConnected2D(filters, kernel_size, strides=(1, 1), padding='valid', data_format=None, activation=None, use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros', kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)
+</code></pre>
+
+<p>2D 输入的局部连接层。</p>
+<p><code>LocallyConnected2D</code> 层与 <code>Conv2D</code> 层的工作方式相同，除了权值不共享外，
+也就是说，在输入的每个不同部分应用不同的一组过滤器。</p>
+<p><strong>例子</strong></p>
+<pre><code class="python"># 在 32x32 图像上应用 3x3 非共享权值和64个输出过滤器的卷积
+# 数据格式 `data_format=&quot;channels_last&quot;`：
+model = Sequential()
+model.add(LocallyConnected2D(64, (3, 3), input_shape=(32, 32, 3)))
+# 现在 model.output_shape == (None, 30, 30, 64)
+# 注意这一层的参数数量为 (30*30)*(3*3*3*64) + (30*30)*64
+
+# 在上面再加一个 3x3 非共享权值和 32 个输出滤波器的卷积：
+model.add(LocallyConnected2D(32, (3, 3)))
+# 现在 model.output_shape == (None, 28, 28, 32)
+</code></pre>
+
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>filters</strong>: 整数，输出空间的维度
+（即卷积中滤波器的输出数量）。</li>
+<li><strong>kernel_size</strong>: 一个整数，或者 2 个整数表示的元组或列表，
+指明 2D 卷积窗口的宽度和高度。
+可以是一个整数，为所有空间维度指定相同的值。</li>
+<li><strong>strides</strong>: 一个整数，或者 2 个整数表示的元组或列表，
+指明卷积沿宽度和高度方向的步长。
+可以是一个整数，为所有空间维度指定相同的值。</li>
+<li><strong>padding</strong>: 当前仅支持 <code>"valid"</code> (大小写敏感)。
+<code>"same"</code> 可能会在未来支持。</li>
+<li><strong>data_format</strong>: 字符串，
+<code>channels_last</code> (默认) 或 <code>channels_first</code> 之一。
+输入中维度的顺序。
+<code>channels_last</code> 对应输入尺寸为 <code>(batch, height, width, channels)</code>，
+<code>channels_first</code> 对应输入尺寸为 <code>(batch, channels, height, width)</code>。
+它默认为从 Keras 配置文件 <code>~/.keras/keras.json</code> 中
+找到的 <code>image_data_format</code> 值。
+如果你从未设置它，将使用 "channels_last"。</li>
+<li><strong>activation</strong>: 要使用的激活函数
+(详见 <a href="../../activations/">activations</a>)。
+如果你不指定，则不使用激活函数
+(即线性激活： <code>a(x) = x</code>)。</li>
+<li><strong>use_bias</strong>: 布尔值，该层是否使用偏置向量。</li>
+<li><strong>kernel_initializer</strong>: <code>kernel</code> 权值矩阵的初始化器
+(详见 <a href="../../initializers/">initializers</a>)。</li>
+<li><strong>bias_initializer</strong>: 偏置向量的初始化器
+(详见 <a href="../../initializers/">initializers</a>)。</li>
+<li><strong>kernel_regularizer</strong>: 运用到 <code>kernel</code> 权值矩阵的正则化函数
+(详见 <a href="../../regularizers/">regularizer</a>)。</li>
+<li><strong>bias_regularizer</strong>: 运用到偏置向量的正则化函数
+(详见 <a href="../../regularizers/">regularizer</a>)。</li>
+<li><strong>activity_regularizer</strong>: 运用到层输出（它的激活值）的正则化函数
+(详见 <a href="../../regularizers/">regularizer</a>)。</li>
+<li><strong>kernel_constraint</strong>: 运用到 <code>kernel</code> 权值矩阵的约束函数
+(详见 <a href="../../constraints/">constraints</a>)。</li>
+<li><strong>bias_constraint</strong>: 运用到偏置向量的约束函数
+(详见 <a href="../../constraints/">constraints</a>)。</li>
+</ul>
+<p><strong>输入尺寸</strong></p>
+<p>4D 张量，尺寸为：
+<code>(samples, channels, rows, cols)</code>，如果 data_format='channels_first'；
+或者 4D 张量，尺寸为：
+<code>(samples, rows, cols, channels)</code>，如果 data_format='channels_last'。</p>
+<p><strong>输出尺寸</strong></p>
+<p>4D 张量，尺寸为：
+<code>(samples, filters, new_rows, new_cols)</code>，如果 data_format='channels_first'；
+或者 4D 张量，尺寸为：
+<code>(samples, new_rows, new_cols, filters)</code>，如果 data_format='channels_last'。
+<code>rows</code> 和 <code>cols</code> 的值可能因填充而改变。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../recurrent/" class="btn btn-neutral float-right" title="循环层 Recurrent">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../pooling/" class="btn btn-neutral" title="池化层 Pooling"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../pooling/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../recurrent/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

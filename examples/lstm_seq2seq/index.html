@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Lstm seq2seq - Keras 中文文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Lstm seq2seq";
+    var mkdocs_page_input_path = "examples/lstm_seq2seq.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Keras 中文文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">主页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../why-use-keras/">为什么选择 Keras?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">快速开始</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../getting-started/sequential-model-guide/">Sequential 顺序模型指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/functional-api-guide/">函数式 API 指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../getting-started/faq/">FAQ 常见问题解答</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">模型</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../models/about-keras-models/">关于 Keras 模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../models/sequential/">Sequential 顺序模型 API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../models/model/">函数式 API</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Layers</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../layers/about-keras-layers/">关于 Keras 网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/core/">核心网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/convolutional/">卷积层 Convolutional</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/pooling/">池化层 Pooling</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/local/">局部连接层 Locally-connected</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/recurrent/">循环层 Recurrent</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/embeddings/">嵌入层 Embedding</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/merge/">融合层 Merge</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/advanced-activations/">高级激活层 Advanced Activations</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/normalization/">标准化层 Normalization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/noise/">噪声层 Noise</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/wrappers/">层封装器 wrappers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layers/writing-your-own-keras-layers/">编写你自己的层</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">数据预处理</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/sequence/">序列预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/text/">文本预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../preprocessing/image/">图像预处理</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../losses/">损失函数 Losses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../metrics/">评估标准 Metrics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../optimizers/">优化器 Optimizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../activations/">激活函数 Activations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../callbacks/">回调函数 Callbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../datasets/">常用数据集 Datasets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../applications/">应用 Applications</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../backend/">后端 Backend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../initializers/">初始化 Initializers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../regularizers/">正则化 Regularizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../constraints/">约束 Constraints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../visualization/">可视化 Visualization</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../scikit-learn-api/">Scikit-learn API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../utils/">工具</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../contributing/">贡献</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">经典样例</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../addition_rnn/">Addition RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../babi_rnn/">Baby RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../babi_memnn/">Baby MemNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cifar10_cnn/">CIFAR-10 CNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cifar10_cnn_capsule/">CIFAR-10 CNN-Capsule</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cifar10_cnn_tfaugment2d/">CIFAR-10 CNN with augmentation (TF)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cifar10_resnet/">CIFAR-10 ResNet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../conv_filter_visualization/">Convolution filter visualization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../image_ocr/">Image OCR</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../imdb_bidirectional_lstm/">Bidirectional LSTM</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Keras 中文文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Lstm seq2seq</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Sequence to sequence example in Keras (character-level).</p>
+<p>This script demonstrates how to implement a basic character-level
+sequence-to-sequence model. We apply it to translating
+short English sentences into short French sentences,
+character-by-character. Note that it is fairly unusual to
+do character-level machine translation, as word-level
+models are more common in this domain.</p>
+<h1 id="summary-of-the-algorithm">Summary of the algorithm</h1>
+<ul>
+<li>We start with input sequences from a domain (e.g. English sentences)
+    and corresponding target sequences from another domain
+    (e.g. French sentences).</li>
+<li>An encoder LSTM turns input sequences to 2 state vectors
+    (we keep the last LSTM state and discard the outputs).</li>
+<li>A decoder LSTM is trained to turn the target sequences into
+    the same sequence but offset by one timestep in the future,
+    a training process called "teacher forcing" in this context.
+    It uses as initial state the state vectors from the encoder.
+    Effectively, the decoder learns to generate <code>targets[t+1...]</code>
+    given <code>targets[...t]</code>, conditioned on the input sequence.</li>
+<li>In inference mode, when we want to decode unknown input sequences, we:<ul>
+<li>Encode the input sequence into state vectors</li>
+<li>Start with a target sequence of size 1
+    (just the start-of-sequence character)</li>
+<li>Feed the state vectors and 1-char target sequence
+    to the decoder to produce predictions for the next character</li>
+<li>Sample the next character using these predictions
+    (we simply use argmax).</li>
+<li>Append the sampled character to the target sequence</li>
+<li>Repeat until we generate the end-of-sequence character or we
+    hit the character limit.</li>
+</ul>
+</li>
+</ul>
+<h1 id="data-download">Data download</h1>
+<p>English to French sentence pairs.
+http://www.manythings.org/anki/fra-eng.zip</p>
+<p>Lots of neat sentence pairs datasets can be found at:
+http://www.manythings.org/anki/</p>
+<h1 id="references">References</h1>
+<ul>
+<li>Sequence to Sequence Learning with Neural Networks
+    https://arxiv.org/abs/1409.3215</li>
+<li>Learning Phrase Representations using
+    RNN Encoder-Decoder for Statistical Machine Translation
+    https://arxiv.org/abs/1406.1078</li>
+</ul>
+<pre><code class="python">from __future__ import print_function
+
+from keras.models import Model
+from keras.layers import Input, LSTM, Dense
+import numpy as np
+
+batch_size = 64  # Batch size for training.
+epochs = 100  # Number of epochs to train for.
+latent_dim = 256  # Latent dimensionality of the encoding space.
+num_samples = 10000  # Number of samples to train on.
+# Path to the data txt file on disk.
+data_path = 'fra-eng/fra.txt'
+
+# Vectorize the data.
+input_texts = []
+target_texts = []
+input_characters = set()
+target_characters = set()
+with open(data_path, 'r', encoding='utf-8') as f:
+    lines = f.read().split('\n')
+for line in lines[: min(num_samples, len(lines) - 1)]:
+    input_text, target_text = line.split('\t')
+    # We use &quot;tab&quot; as the &quot;start sequence&quot; character
+    # for the targets, and &quot;\n&quot; as &quot;end sequence&quot; character.
+    target_text = '\t' + target_text + '\n'
+    input_texts.append(input_text)
+    target_texts.append(target_text)
+    for char in input_text:
+        if char not in input_characters:
+            input_characters.add(char)
+    for char in target_text:
+        if char not in target_characters:
+            target_characters.add(char)
+
+input_characters = sorted(list(input_characters))
+target_characters = sorted(list(target_characters))
+num_encoder_tokens = len(input_characters)
+num_decoder_tokens = len(target_characters)
+max_encoder_seq_length = max([len(txt) for txt in input_texts])
+max_decoder_seq_length = max([len(txt) for txt in target_texts])
+
+print('Number of samples:', len(input_texts))
+print('Number of unique input tokens:', num_encoder_tokens)
+print('Number of unique output tokens:', num_decoder_tokens)
+print('Max sequence length for inputs:', max_encoder_seq_length)
+print('Max sequence length for outputs:', max_decoder_seq_length)
+
+input_token_index = dict(
+    [(char, i) for i, char in enumerate(input_characters)])
+target_token_index = dict(
+    [(char, i) for i, char in enumerate(target_characters)])
+
+encoder_input_data = np.zeros(
+    (len(input_texts), max_encoder_seq_length, num_encoder_tokens),
+    dtype='float32')
+decoder_input_data = np.zeros(
+    (len(input_texts), max_decoder_seq_length, num_decoder_tokens),
+    dtype='float32')
+decoder_target_data = np.zeros(
+    (len(input_texts), max_decoder_seq_length, num_decoder_tokens),
+    dtype='float32')
+
+for i, (input_text, target_text) in enumerate(zip(input_texts, target_texts)):
+    for t, char in enumerate(input_text):
+        encoder_input_data[i, t, input_token_index[char]] = 1.
+    for t, char in enumerate(target_text):
+        # decoder_target_data is ahead of decoder_input_data by one timestep
+        decoder_input_data[i, t, target_token_index[char]] = 1.
+        if t &gt; 0:
+            # decoder_target_data will be ahead by one timestep
+            # and will not include the start character.
+            decoder_target_data[i, t - 1, target_token_index[char]] = 1.
+
+# Define an input sequence and process it.
+encoder_inputs = Input(shape=(None, num_encoder_tokens))
+encoder = LSTM(latent_dim, return_state=True)
+encoder_outputs, state_h, state_c = encoder(encoder_inputs)
+# We discard `encoder_outputs` and only keep the states.
+encoder_states = [state_h, state_c]
+
+# Set up the decoder, using `encoder_states` as initial state.
+decoder_inputs = Input(shape=(None, num_decoder_tokens))
+# We set up our decoder to return full output sequences,
+# and to return internal states as well. We don't use the
+# return states in the training model, but we will use them in inference.
+decoder_lstm = LSTM(latent_dim, return_sequences=True, return_state=True)
+decoder_outputs, _, _ = decoder_lstm(decoder_inputs,
+                                     initial_state=encoder_states)
+decoder_dense = Dense(num_decoder_tokens, activation='softmax')
+decoder_outputs = decoder_dense(decoder_outputs)
+
+# Define the model that will turn
+# `encoder_input_data` &amp; `decoder_input_data` into `decoder_target_data`
+model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
+
+# Run training
+model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
+model.fit([encoder_input_data, decoder_input_data], decoder_target_data,
+          batch_size=batch_size,
+          epochs=epochs,
+          validation_split=0.2)
+# Save model
+model.save('s2s.h5')
+
+# Next: inference mode (sampling).
+# Here's the drill:
+# 1) encode input and retrieve initial decoder state
+# 2) run one step of decoder with this initial state
+# and a &quot;start of sequence&quot; token as target.
+# Output will be the next target token
+# 3) Repeat with the current target token and current states
+
+# Define sampling models
+encoder_model = Model(encoder_inputs, encoder_states)
+
+decoder_state_input_h = Input(shape=(latent_dim,))
+decoder_state_input_c = Input(shape=(latent_dim,))
+decoder_states_inputs = [decoder_state_input_h, decoder_state_input_c]
+decoder_outputs, state_h, state_c = decoder_lstm(
+    decoder_inputs, initial_state=decoder_states_inputs)
+decoder_states = [state_h, state_c]
+decoder_outputs = decoder_dense(decoder_outputs)
+decoder_model = Model(
+    [decoder_inputs] + decoder_states_inputs,
+    [decoder_outputs] + decoder_states)
+
+# Reverse-lookup token index to decode sequences back to
+# something readable.
+reverse_input_char_index = dict(
+    (i, char) for char, i in input_token_index.items())
+reverse_target_char_index = dict(
+    (i, char) for char, i in target_token_index.items())
+
+
+def decode_sequence(input_seq):
+    # Encode the input as state vectors.
+    states_value = encoder_model.predict(input_seq)
+
+    # Generate empty target sequence of length 1.
+    target_seq = np.zeros((1, 1, num_decoder_tokens))
+    # Populate the first character of target sequence with the start character.
+    target_seq[0, 0, target_token_index['\t']] = 1.
+
+    # Sampling loop for a batch of sequences
+    # (to simplify, here we assume a batch of size 1).
+    stop_condition = False
+    decoded_sentence = ''
+    while not stop_condition:
+        output_tokens, h, c = decoder_model.predict(
+            [target_seq] + states_value)
+
+        # Sample a token
+        sampled_token_index = np.argmax(output_tokens[0, -1, :])
+        sampled_char = reverse_target_char_index[sampled_token_index]
+        decoded_sentence += sampled_char
+
+        # Exit condition: either hit max length
+        # or find stop character.
+        if (sampled_char == '\n' or
+           len(decoded_sentence) &gt; max_decoder_seq_length):
+            stop_condition = True
+
+        # Update the target sequence (of length 1).
+        target_seq = np.zeros((1, 1, num_decoder_tokens))
+        target_seq[0, 0, sampled_token_index] = 1.
+
+        # Update states
+        states_value = [h, c]
+
+    return decoded_sentence
+
+
+for seq_index in range(100):
+    # Take one sequence (part of the training set)
+    # for trying out decoding.
+    input_seq = encoder_input_data[seq_index: seq_index + 1]
+    decoded_sentence = decode_sequence(input_seq)
+    print('-')
+    print('Input sentence:', input_texts[seq_index])
+    print('Decoded sentence:', decoded_sentence)
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

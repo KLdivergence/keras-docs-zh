@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>工具 - Keras 中文文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u5de5\u5177";
+    var mkdocs_page_input_path = "utils.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Keras 中文文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">主页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../why-use-keras/">为什么选择 Keras?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">快速开始</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting-started/sequential-model-guide/">Sequential 顺序模型指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../getting-started/functional-api-guide/">函数式 API 指引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../getting-started/faq/">FAQ 常见问题解答</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">模型</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../models/about-keras-models/">关于 Keras 模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../models/sequential/">Sequential 顺序模型 API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../models/model/">函数式 API</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Layers</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../layers/about-keras-layers/">关于 Keras 网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/core/">核心网络层</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/convolutional/">卷积层 Convolutional</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/pooling/">池化层 Pooling</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/local/">局部连接层 Locally-connected</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/recurrent/">循环层 Recurrent</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/embeddings/">嵌入层 Embedding</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/merge/">融合层 Merge</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/advanced-activations/">高级激活层 Advanced Activations</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/normalization/">标准化层 Normalization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/noise/">噪声层 Noise</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/wrappers/">层封装器 wrappers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layers/writing-your-own-keras-layers/">编写你自己的层</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">数据预处理</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../preprocessing/sequence/">序列预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../preprocessing/text/">文本预处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../preprocessing/image/">图像预处理</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../losses/">损失函数 Losses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../metrics/">评估标准 Metrics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../optimizers/">优化器 Optimizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../activations/">激活函数 Activations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../callbacks/">回调函数 Callbacks</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../datasets/">常用数据集 Datasets</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../applications/">应用 Applications</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../backend/">后端 Backend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../initializers/">初始化 Initializers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../regularizers/">正则化 Regularizers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../constraints/">约束 Constraints</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../visualization/">可视化 Visualization</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../scikit-learn-api/">Scikit-learn API</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">工具</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#customobjectscope">CustomObjectScope</a></li>
+    
+
+    <li class="toctree-l2"><a href="#hdf5matrix">HDF5Matrix</a></li>
+    
+
+    <li class="toctree-l2"><a href="#sequence">Sequence</a></li>
+    
+
+    <li class="toctree-l2"><a href="#to_categorical">to_categorical</a></li>
+    
+
+    <li class="toctree-l2"><a href="#normalize">normalize</a></li>
+    
+
+    <li class="toctree-l2"><a href="#get_file">get_file</a></li>
+    
+
+    <li class="toctree-l2"><a href="#print_summary">print_summary</a></li>
+    
+
+    <li class="toctree-l2"><a href="#plot_model">plot_model</a></li>
+    
+
+    <li class="toctree-l2"><a href="#multi_gpu_model">multi_gpu_model</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../contributing/">贡献</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">经典样例</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../examples/addition_rnn/">Addition RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/babi_rnn/">Baby RNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/babi_memnn/">Baby MemNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/cifar10_cnn/">CIFAR-10 CNN</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/cifar10_cnn_capsule/">CIFAR-10 CNN-Capsule</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/cifar10_cnn_tfaugment2d/">CIFAR-10 CNN with augmentation (TF)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/cifar10_resnet/">CIFAR-10 ResNet</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/conv_filter_visualization/">Convolution filter visualization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/image_ocr/">Image OCR</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../examples/imdb_bidirectional_lstm/">Bidirectional LSTM</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Keras 中文文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>工具</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/utils/generic_utils.py#L21">[source]</a></span></p>
+<h3 id="customobjectscope">CustomObjectScope</h3>
+<pre><code class="python">keras.utils.CustomObjectScope()
+</code></pre>
+
+<p>提供更改为 <code>_GLOBAL_CUSTOM_OBJECTS</code> 无法转义的范围。</p>
+<p><code>with</code> 语句中的代码将能够通过名称访问自定义对象。
+对全局自定义对象的更改会在封闭的 <code>with</code> 语句中持续存在。
+在<code>with</code>语句结束时，
+全局自定义对象将恢复到 <code>with</code> 语句开始时的状态。</p>
+<p><strong>例子</strong></p>
+<p>考虑自定义对象 <code>MyObject</code> (例如一个类)：</p>
+<pre><code class="python">with CustomObjectScope({'MyObject':MyObject}):
+    layer = Dense(..., kernel_regularizer='MyObject')
+    # 保存，加载等操作将按这个名称来识别自定义对象
+</code></pre>
+
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/utils/io_utils.py#L25">[source]</a></span></p>
+<h3 id="hdf5matrix">HDF5Matrix</h3>
+<pre><code class="python">keras.utils.HDF5Matrix(datapath, dataset, start=0, end=None, normalizer=None)
+</code></pre>
+
+<p>使用 HDF5 数据集表示，而不是 Numpy 数组。</p>
+<p><strong>例子</strong></p>
+<pre><code class="python">x_data = HDF5Matrix('input/file.hdf5', 'data')
+model.predict(x_data)
+</code></pre>
+
+<p>提供 <code>start</code> 和 <code>end</code> 将允许使用数据集的一个切片。</p>
+<p>你还可以给出标准化函数（或 lambda）（可选）。
+这将在检索到的每一个数据切片上调用它。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>datapath</strong>: 字符串，HDF5 文件路径。</li>
+<li><strong>dataset</strong>: 字符串，datapath指定的文件中的 HDF5 数据集名称。</li>
+<li><strong>start</strong>: 整数，所需的指定数据集的切片的开始位置。</li>
+<li><strong>end</strong>: 整数，所需的指定数据集的切片的结束位置。</li>
+<li><strong>normalizer</strong>: 在检索数据时调用的函数。</li>
+</ul>
+<p><strong>返回</strong></p>
+<p>一个类似于数组的 HDF5 数据集。</p>
+<hr />
+<p><span style="float:right;"><a href="https://github.com/keras-team/keras/blob/master/keras/utils/data_utils.py#L302">[source]</a></span></p>
+<h3 id="sequence">Sequence</h3>
+<pre><code class="python">keras.utils.Sequence()
+</code></pre>
+
+<p>用于拟合数据序列的基对象，例如一个数据集。</p>
+<p>每一个 <code>Sequence</code> 必须实现 <code>__getitem__</code> 和 <code>__len__</code> 方法。
+如果你想在迭代之间修改你的数据集，你可以实现 <code>on_epoch_end</code>。
+<code>__getitem__</code> 方法应该范围一个完整的批次。</p>
+<p><strong>注意</strong></p>
+<p><code>Sequence</code> 是进行多进程处理的更安全的方法。这种结构保证网络在每个时期每个样本只训练一次，这与生成器不同。</p>
+<p><strong>例子</strong></p>
+<pre><code class="python">from skimage.io import imread
+from skimage.transform import resize
+import numpy as np
+
+# 这里，`x_set` 是图像的路径列表
+# 以及 `y_set` 是对应的类别
+
+class CIFAR10Sequence(Sequence):
+
+    def __init__(self, x_set, y_set, batch_size):
+        self.x, self.y = x_set, y_set
+        self.batch_size = batch_size
+
+    def __len__(self):
+        return int(np.ceil(len(self.x) / float(self.batch_size)))
+
+    def __getitem__(self, idx):
+        batch_x = self.x[idx * self.batch_size:(idx + 1) * self.batch_size]
+        batch_y = self.y[idx * self.batch_size:(idx + 1) * self.batch_size]
+
+        return np.array([
+            resize(imread(file_name), (200, 200))
+               for file_name in batch_x]), np.array(batch_y)
+</code></pre>
+
+<hr />
+<h3 id="to_categorical">to_categorical</h3>
+<pre><code class="python">keras.utils.to_categorical(y, num_classes=None, dtype='float32')
+</code></pre>
+
+<p>将类向量（整数）转换为二进制类矩阵。</p>
+<p>例如，用于 categorical_crossentropy。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>y</strong>: 需要转换成矩阵的类矢量
+(从 0 到 num_classes 的整数)。</li>
+<li><strong>num_classes</strong>: 总类别数。</li>
+<li><strong>dtype</strong>: 字符串，输入所期望的数据类型 (<code>float32</code>, <code>float64</code>, <code>int32</code>...)</li>
+</ul>
+<p><strong>例子</strong></p>
+<pre><code class="python"># 考虑一组 3 个类 {0,1,2} 中的 5 个标签数组：
+&gt; labels
+array([0, 2, 1, 2, 0])
+# `to_categorical` 将其转换为具有尽可能多表示类别数的列的矩阵。
+# 行数保持不变。
+&gt; to_categorical(labels)
+array([[ 1.,  0.,  0.],
+       [ 0.,  0.,  1.],
+       [ 0.,  1.,  0.],
+       [ 0.,  0.,  1.],
+       [ 1.,  0.,  0.]], dtype=float32)
+</code></pre>
+
+<p><strong>返回</strong></p>
+<p>输入的二进制矩阵表示。</p>
+<hr />
+<h3 id="normalize">normalize</h3>
+<pre><code class="python">keras.utils.normalize(x, axis=-1, order=2)
+</code></pre>
+
+<p>标准化一个 Numpy 数组。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>x</strong>: 需要标准化的 Numpy 数组。</li>
+<li><strong>axis</strong>: 需要标准化的轴。</li>
+<li><strong>order</strong>: 标准化顺序(例如，2 表示 L2 规范化)。</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>数组的标准化副本。</p>
+<hr />
+<h3 id="get_file">get_file</h3>
+<pre><code class="python">keras.utils.get_file(fname, origin, untar=False, md5_hash=None, file_hash=None, cache_subdir='datasets', hash_algorithm='auto', extract=False, archive_format='auto', cache_dir=None)
+</code></pre>
+
+<p>从一个 URL 下载文件，如果它不存在缓存中。</p>
+<p>默认情况下，URL <code>origin</code>处的文件
+被下载到缓存目录 <code>〜/.keras</code> 中，
+放在缓存子目录 <code>datasets</code>中，并命名为 <code>fname</code>。
+文件 <code>example.txt</code> 的最终位置为 <code>~/.keras/datasets/example.txt</code>。</p>
+<p>tar, tar.gz, tar.bz, 以及 zip 格式的文件也可以被解压。
+传递一个哈希值将在下载后校验文件。
+命令行程序 <code>shasum</code> 和 <code>sha256sum</code> 可以计算哈希。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>fname</strong>: 文件名。如果指定了绝对路径 <code>/path/to/file.txt</code>，
+那么文件将会保存到那个路径。</li>
+<li><strong>origin</strong>: 文件的原始 URL。</li>
+<li><strong>untar</strong>: 由于使用 'extract' 而已被弃用。
+布尔值，是否需要解压文件。</li>
+<li><strong>md5_hash</strong>: 由于使用 'file_hash' 而已被弃用。
+用于校验的 md5 哈希值。</li>
+<li><strong>file_hash</strong>: 下载后的文件的期望哈希字符串。
+支持 sha256 和 md5 两个哈希算法。</li>
+<li><strong>cache_subdir</strong>: 在 Keras 缓存目录下的保存文件的子目录。
+如果指定了绝对路径 <code>/path/to/folder</code>，则文件将被保存在该位置。</li>
+<li><strong>hash_algorithm</strong>: 选择哈希算法来校验文件。
+可选的有 'md5', 'sha256', 以及 'auto'。
+默认的 'auto' 将自动检测所使用的哈希算法。</li>
+<li><strong>extract</strong>: True 的话会尝试将解压缩存档文件，如tar或zip。</li>
+<li><strong>archive_format</strong>: 尝试提取文件的存档格式。
+可选的有 'auto', 'tar', 'zip', 以及 None。
+'tar' 包含 tar, tar.gz, 和 tar.bz 文件。
+默认 'auto' 为 ['tar', 'zip']。
+None 或 空列表将返回未找到任何匹配。
+ke xu az z'auto', 'tar', 'zip', and None.</li>
+<li><strong>cache_dir</strong>: 存储缓存文件的位置，为 None 时默认为
+<a href="/faq/#where-is-the-keras-configuration-filed-stored">Keras 目录</a>.</li>
+</ul>
+<p><strong>返回</strong></p>
+<p>下载的文件的路径。</p>
+<hr />
+<h3 id="print_summary">print_summary</h3>
+<pre><code class="python">keras.utils.print_summary(model, line_length=None, positions=None, print_fn=None)
+</code></pre>
+
+<p>打印模型概况。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>model</strong>: Keras 模型实例。</li>
+<li><strong>line_length</strong>: 打印的每行的总长度
+(例如，设置此项以使其显示适应不同的终端窗口大小)。</li>
+<li><strong>positions</strong>: 每行中日志元素的相对或绝对位置。
+如果未提供，默认为 <code>[.33, .55, .67, 1.]</code>。</li>
+<li><strong>print_fn</strong>: 需要使用的打印函数。
+它将在每一行概述时调用。
+您可以将其设置为自定义函数以捕获字符串概述。
+默认为 <code>print</code> (打印到标准输出)。</li>
+</ul>
+<hr />
+<h3 id="plot_model">plot_model</h3>
+<pre><code class="python">keras.utils.plot_model(model, to_file='model.png', show_shapes=False, show_layer_names=True, rankdir='TB', expand_nested=False, dpi=96)
+</code></pre>
+
+<p>将 Keras 模型转换为 dot 格式并保存到文件中。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>model</strong>: 一个 Keras 模型实例。</li>
+<li><strong>to_file</strong>: 绘制图像的文件名。</li>
+<li><strong>show_shapes</strong>: 是否显示尺寸信息。</li>
+<li><strong>show_layer_names</strong>: 是否显示层的名称。</li>
+<li><strong>rankdir</strong>: 传递给 PyDot 的 <code>rankdir</code> 参数，
+一个指定绘图格式的字符串：
+'TB' 创建一个垂直绘图；
+'LR' 创建一个水平绘图。</li>
+<li><strong>expand_nested</strong>: 是否扩展嵌套模型为聚类。 </li>
+<li><strong>dpi</strong>: 点 DPI。</li>
+</ul>
+<hr />
+<h3 id="multi_gpu_model">multi_gpu_model</h3>
+<pre><code class="python">keras.utils.multi_gpu_model(model, gpus=None, cpu_merge=True, cpu_relocation=False)
+</code></pre>
+
+<p>将模型复制到不同的 GPU 上。</p>
+<p>具体来说，该功能实现了单机多 GPU 数据并行性。
+它的工作原理如下：</p>
+<ul>
+<li>将模型的输入分成多个子批次。</li>
+<li>在每个子批次上应用模型副本。
+每个模型副本都在专用 GPU 上执行。</li>
+<li>将结果（在 CPU 上）连接成一个大批量。</li>
+</ul>
+<p>例如， 如果你的 <code>batch_size</code> 是 64，且你使用 <code>gpus=2</code>，
+那么我们将把输入分为两个 32 个样本的子批次，
+在 1 个 GPU 上处理 1 个子批次，然后返回完整批次的 64 个处理过的样本。</p>
+<p>这实现了多达 8 个 GPU 的准线性加速。</p>
+<p>此功能目前仅适用于 TensorFlow 后端。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><strong>model</strong>: 一个 Keras 模型实例。为了避免OOM错误，该模型可以建立在 CPU 上，
+详见下面的使用样例。</li>
+<li><strong>gpus</strong>: 整数 &gt;= 2 或整数列表，创建模型副本的 GPU 数量，
+或 GPU ID 的列表。</li>
+<li><strong>cpu_merge</strong>: 一个布尔值，用于标识是否强制合并 CPU 范围内的模型权重。</li>
+<li><strong>cpu_relocation</strong>: 一个布尔值，用来确定是否在 CPU 的范围内创建模型的权重。如果模型没有在任何一个设备范围内定义，您仍然可以通过激活这个选项来拯救它。</li>
+</ul>
+<p><strong>返回</strong></p>
+<p>一个 Keras <code>Model</code> 实例，它可以像初始 <code>model</code> 参数一样使用，但它将工作负载分布在多个 GPU 上。</p>
+<p><strong>例子</strong></p>
+<p>例 1 - 训练在 CPU 上合并权重的模型</p>
+<pre><code class="python">import tensorflow as tf
+from keras.applications import Xception
+from keras.utils import multi_gpu_model
+import numpy as np
+
+num_samples = 1000
+height = 224
+width = 224
+num_classes = 1000
+
+# 实例化基础模型（或者「模版」模型）。
+# 我们推荐在 CPU 设备范围内做此操作，
+# 这样模型的权重就会存储在 CPU 内存中。
+# 否则它们会存储在 GPU 上，而完全被共享。
+with tf.device('/cpu:0'):
+    model = Xception(weights=None,
+                     input_shape=(height, width, 3),
+                     classes=num_classes)
+
+# 复制模型到 8 个 GPU 上。
+# 这假设你的机器有 8 个可用 GPU。
+parallel_model = multi_gpu_model(model, gpus=8)
+parallel_model.compile(loss='categorical_crossentropy',
+                       optimizer='rmsprop')
+
+# 生成虚拟数据
+x = np.random.random((num_samples, height, width, 3))
+y = np.random.random((num_samples, num_classes))
+
+# 这个 `fit` 调用将分布在 8 个 GPU 上。
+# 由于 batch size 是 256, 每个 GPU 将处理 32 个样本。
+parallel_model.fit(x, y, epochs=20, batch_size=256)
+
+# 通过模版模型存储模型（共享相同权重）：
+model.save('my_model.h5')
+</code></pre>
+
+<p>例 2 - 训练在 CPU 上利用 cpu_relocation 合并权重的模型</p>
+<pre><code class="python">..
+# 不需要更改模型定义的设备范围：
+model = Xception(weights=None, ..)
+
+try:
+    parallel_model = multi_gpu_model(model, cpu_relocation=True)
+    print(&quot;Training using multiple GPUs..&quot;)
+except ValueError:
+    parallel_model = model
+    print(&quot;Training using single GPU or CPU..&quot;)
+parallel_model.compile(..)
+..
+</code></pre>
+
+<p>例 3 - 训练在 GPU 上合并权重的模型（建议用于 NV-link）</p>
+<pre><code class="python">..
+# 不需要更改模型定义的设备范围：
+model = Xception(weights=None, ..)
+
+try:
+    parallel_model = multi_gpu_model(model, cpu_merge=False)
+    print(&quot;Training using multiple GPUs..&quot;)
+except:
+    parallel_model = model
+    print(&quot;Training using single GPU or CPU..&quot;)
+
+parallel_model.compile(..)
+..
+</code></pre>
+
+<p><strong>关于模型保存</strong></p>
+<p>要保存多 GPU 模型，请通过模板模型（传递给 <code>multi_gpu_model</code> 的参数）调用 <code>.save(fname)</code> 或 <code>.save_weights(fname)</code> 以进行存储，而不是通过 <code>multi_gpu_model</code> 返回的模型。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../contributing/" class="btn btn-neutral float-right" title="贡献">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../scikit-learn-api/" class="btn btn-neutral" title="Scikit-learn API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../scikit-learn-api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../contributing/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
